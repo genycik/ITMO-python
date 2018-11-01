@@ -136,7 +136,7 @@ def solve(grid: list):
 def check_solution(solution: list) -> bool:
     """ Если решение solution верно, то вернуть True, в противном случае False """
     # TODO: Add doctests with bad puzzles
-        for i in range(9):
+    for i in range(9):
         for j in range(9):
             pos = (i, j)
             col = get_col(solution, pos)
