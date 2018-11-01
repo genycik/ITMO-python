@@ -1,14 +1,14 @@
 import random
 
 
-def read_sudoku(filename):
+def read_sudoku(filename: str) -> list:
     """ Прочитать Судоку из указанного файла """
     digits = [c for c in open(filename).read() if c in '123456789.']
     grid = group(digits, 9)
     return grid
 
 
-def display(values):
+def display(values: list):
     """Вывод Судоку """
     width = 2
     line = '+'.join(['-' * (width * 3)] * 3)
