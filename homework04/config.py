@@ -1,6 +1,6 @@
 VK_CONFIG = {
     'domain': 'https://api.vk.com/method',
-    'access_token': 'cf002e7754bd804ca6ed8c54f03972e3eb611925e2e58784c610ee0012800d0db2f4650b10aa7b0d9d477',
+    'access_token': 'fc5d976a6dfa61908b0f35e8aa0d30be7b30ab1cee9393cd9dfb597b88a0ce35ebf631c1b6fe5e171ac4f',
     'version': '5.87',
 }
 
