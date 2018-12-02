@@ -3,7 +3,6 @@ import time
 import config
 from api_models import Message
 
-
 def get(url, params={}, timeout=5, max_retries=5, backoff_factor=0.3):
     """ Выполнить GET-запрос
 
@@ -33,7 +32,8 @@ def get_friends(user_id: int, fields = "") -> dict:
     assert isinstance(user_id, int), "user_id must be positive integer"
     assert isinstance(fields, str), "fields must be string"
     assert user_id > 0, "user_id must be positive integer"
-    list_parms = {
+
+    query_params = {
         'domain': config.VK_CONFIG['domain'],
         'access_token': config.VK_CONFIG['access_token'],
         'user_id': user_id,
@@ -41,11 +41,15 @@ def get_friends(user_id: int, fields = "") -> dict:
         'v': config.VK_CONFIG['version']
     }
 
-    url = "{domain}/friends.get?access_token={access_token}&user_id={user_id}&fields={fields}&v={v}".format(
-        **list_parms)
-    response = get(url).json()['response']['items']
-    return response
-
+    query = "{domain}/friends.get?access_token={access_token}&user_id={user_id}&fields={fields}&v={v}".format(
+        **query_params)
+    response = get(query, query_params)
+    if response:
+        friends_json = response.json()
+        if friends_json.get('error') is not None:
+            print(friends_json['error']['error_msg'])
+        else:
+            return friends_json['response']['items']
 
 def messages_get_history(user_id, offset=0, count=20) -> list:
     """ Получить историю переписки с указанным пользователем
